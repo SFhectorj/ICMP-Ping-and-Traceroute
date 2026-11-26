@@ -343,6 +343,11 @@ class IcmpHelperLibrary:
         # ############################################################################################################ #
         def __init__(self, recvPacket):
             self.__recvPacket = recvPacket
+            # Start with flags set to false because we have not checked yet.
+            self.__isValidResponse = False
+            self.__icmpIdentifier_isValid = False
+            self.__icmpSequenceNumber_isValid = False
+            self.__icmpData_isValid = False
 
         # ############################################################################################################ #
         # IcmpPacket_EchoReply Getters                                                                                 #
@@ -403,6 +408,15 @@ class IcmpHelperLibrary:
         def isValidResponse(self):
             return self.__isValidResponse
 
+        def getIcmpIdentifier_isValid(self):
+            return self.__icmpIdentifier_isValid
+
+        def getIcmpSequenceNumber_isValid(self):
+            return self.__icmpSequenceNumber_isValid
+
+        def getIcmpData_isValid(self):
+            return self.__icmpData_isValid
+
         # ############################################################################################################ #
         # IcmpPacket_EchoReply Setters                                                                                 #
         #                                                                                                              #
@@ -412,6 +426,15 @@ class IcmpHelperLibrary:
         # ############################################################################################################ #
         def setIsValidResponse(self, booleanValue):
             self.__isValidResponse = booleanValue
+
+        def setIcmpIdentifier_isValid(self, booleanValue):
+            self.__icmpIdentifier_isValid = booleanValue
+
+        def setIcmpSequenceNumber_isValid(self, booleanValue):
+            self.__icmpSequenceNumber_isValid = booleanValue
+
+        def setIcmpData_isValid(self, booleanValue):
+            self.__icmpData_isValid = booleanValue
 
         # ############################################################################################################ #
         # IcmpPacket_EchoReply Private Functions                                                                       #
