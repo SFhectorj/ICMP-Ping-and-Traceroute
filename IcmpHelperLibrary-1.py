@@ -217,6 +217,25 @@ class IcmpHelperLibrary:
             icmpReplyPacket.setIcmpData_isValid(dataMatches)
             icmpReplyPacket.setIsValidResponse(identifierMatches and sequenceMatches and dataMatches)
 
+            if self.__DEBUG_IcmpPacket:
+                print(
+                    f"Identifier: expected={self.getPacketIdentifier()}, "
+                    f"actual={icmpReplyPacket.getIcmpIdentifier()}, "
+                    f"result={'MATCH' if identifierMatches else 'MISMATCH'}"
+                )
+
+                print(
+                    f"Sequence number: expected={self.getPacketSequenceNumber()}, "
+                    f"actual={icmpReplyPacket.getIcmpSequenceNumber()}, "
+                    f"result={'MATCH' if sequenceMatches else 'MISMATCH'}"
+                )
+
+                print(
+                    f"Data: expected={self.getDataRaw()!r}, "
+                    f"actual={icmpReplyPacket.getIcmpData()!r}, "
+                    f"result={'MATCH' if dataMatches else 'MISMATCH'}"
+                )
+
         # ############################################################################################################ #
         # IcmpPacket Class Public Functions                                                                            #
         #                                                                                                              #
