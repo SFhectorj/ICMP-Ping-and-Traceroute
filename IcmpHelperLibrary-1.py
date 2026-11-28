@@ -208,8 +208,14 @@ class IcmpHelperLibrary:
 
         def __validateIcmpReplyPacketWithOriginalPingData(self, icmpReplyPacket):
             # Hint: Work through comparing each value and identify if this is a valid response.
-            icmpReplyPacket.setIsValidResponse(True)
-            pass
+            identifierMatches = (self.getPacketIdentifier() == icmpReplyPacket.getICMPIdentifier())
+            sequenceMatches = (self.getPacketSequenceNumber() == icmpReplyPacket.getIcmpSequenceNumber())
+            dataMatches = (self.getDataRaw() == icmpReplyPacket.getIcmpData())
+
+            icmpReplyPacket.setIcmpIdentifier_isValid(identifierMatches)
+            icmpReplyPacket.setIcmpSequenceNumber_isValid(sequenceMatches)
+            icmpReplyPacket.setIcmpData_isValid(dataMatches)
+            icmpReplyPacket.setIsValidResponse(identifierMatches and sequenceMatches and dataMatches)
 
         # ############################################################################################################ #
         # IcmpPacket Class Public Functions                                                                            #
